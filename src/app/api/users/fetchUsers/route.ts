@@ -4,8 +4,7 @@ import User from "@/model/userModel";
 
 export default async function handler (req: NextRequest) {
     try {
-        if (req.method === 'GET) {
-            
+        if (req.method === 'GET') {
         const data = await getLoggedInUserId(req);
         console.log('data',data);
         const users = await User.findOne({_id: data._id});
