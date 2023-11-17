@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from 'jsonwebtoken';
 import User from "@/model/userModel";
 
-export async function GET (req: NextRequest) {
+export default async function GET (req: NextRequest) {
     try {
         const data = await getLoggedInUserId(req);
         console.log('data',data);
