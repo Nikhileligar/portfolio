@@ -2,8 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from 'jsonwebtoken';
 import User from "@/model/userModel";
 
-export default async function GET (req: NextRequest) {
+export default async function handler (req: NextRequest) {
     try {
+        if (req.method === 'GET) {
+            
         const data = await getLoggedInUserId(req);
         console.log('data',data);
         const users = await User.findOne({_id: data._id});
@@ -19,6 +21,7 @@ export default async function GET (req: NextRequest) {
                 message:'error'
             })
         }
+    }
     } catch (err) {
         console.log(err);
         
