@@ -6,8 +6,9 @@ import { log } from "console";
 import jwt from 'jsonwebtoken';
 
 
-export async function POST (req: NextRequest) {
+export async function handler (req: NextRequest) {
     try {
+        if(req.method === 'POST'){
             const data = await req.json();
             const {email, password} = data;
             const users = await User.findOne({email});
@@ -42,7 +43,8 @@ export async function POST (req: NextRequest) {
                     success: false,
                     status: 405
                 })
-            } 
+            }
+        }
     } catch (err) {
         console.log(err,'error in logging you in');
         throw new Error('error');
